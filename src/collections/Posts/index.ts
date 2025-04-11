@@ -6,6 +6,7 @@ import {
   HeadingFeature,
   HorizontalRuleFeature,
   InlineToolbarFeature,
+  EXPERIMENTAL_TableFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
@@ -96,11 +97,21 @@ export const Posts: CollectionConfig<'posts'> = {
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
+                    EXPERIMENTAL_TableFeature(),
                   ]
                 },
               }),
               label: false,
               required: true,
+            },
+            {
+              name: 'content2',
+              type: 'richText',
+              editor: lexicalEditor({
+                features: ({ defaultFeatures }) => {
+                  return [...defaultFeatures, EXPERIMENTAL_TableFeature()]
+                },
+              }),
             },
           ],
           label: 'Content',
